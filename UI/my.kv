@@ -1,0 +1,50 @@
+WindowManager:
+    MainWindow:
+    SecondWindow:
+
+<MainWindow>:
+    name: "main"
+
+    GridLayout:
+        cols:1
+        size_hint: (0.6,0.7)
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+        Label:
+            text: "ALPHA AI"
+            font_size: 50
+            bold: True
+            color: '#212529'
+
+        Image:
+            source: "loader.gif"
+            size_hint_x: 30
+            size_hint_y: 30
+            allow_stretch: True
+
+        
+
+        Button:
+            text: "Start Engine"
+            font_size: 30
+            pos: self.pos
+            size: 50,50
+            color: "#1e6091"
+            background_color: "#00000000"
+            on_release: 
+                app.root.current = "second"
+                root.manager.transition.direction = "left"
+
+
+<SecondWindow>:
+    name: "second"
+
+    Button:
+        text: "Go back"
+        on_release: 
+            app.root.current = "main"
+            root.manager.transition.direction = "right"
+
+
+
+        
