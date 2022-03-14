@@ -39,11 +39,70 @@ WindowManager:
 <SecondWindow>:
     name: "second"
 
-    Button:
-        text: "Go back"
-        on_release: 
-            app.root.current = "main"
-            root.manager.transition.direction = "right"
+    GridLayout:
+        cols:1
+        size_hint: (0.6,0.7)
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+        Label:
+            text: "Scan Results"
+            font_size: 10
+            bold: True
+            color: '#212529'
+
+        Image:
+            source: "loader.gif"
+            size_hint_x: 25
+            size_hint_y: 25
+            allow_stretch: True
+
+        Button:
+            text: "Facial Scan"
+            margin_bottom: 2
+            pos: self.pos
+            color: "#1e6091"
+            background_color: "#003049"
+
+        Label:
+            text: ""
+            font_size: 5
+            color: '#212529'
+
+        Button:
+            text: "QR and Barcode Scan"
+            margin_bottom: 2
+            pos: self.pos
+            color: "#1e6091"
+            background_color: "#003049"
+
+        Label:
+            text: ""
+            font_size: 5
+            color: '#212529'
+
+        Button:
+            text: "Help"
+            margin_bottom: 2
+            pos: self.pos
+            color: "#1e6091"
+            background_color: "#003049"
+
+        Label:
+            text: ""
+            font_size: 5
+            color: '#212529'
+
+        Button:
+            text: "Go back"
+            pos: self.pos
+            color: "#1e6091"
+            background_color: "#003049"
+            on_release: 
+                app.root.current = "main"
+                root.manager.transition.direction = "right"
+
+    
+        
 
 
 
