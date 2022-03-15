@@ -51,7 +51,7 @@ WindowManager:
             color: '#212529'
 
         Image:
-            source: "scanning.gif"
+            source: "scanning2.gif"
             size_hint_x: 25
             size_hint_y: 25
             allow_stretch: True
@@ -100,6 +100,16 @@ WindowManager:
             on_release: 
                 app.root.current = "main"
                 root.manager.transition.direction = "right"
+
+    FloatLayout:
+        Button:
+            text: "Process Results"
+            size_hint: (0.3,0.3)
+            pos_hint: {"x": 0.03, "top": 1}
+            font_size: 20
+         
+
+
 
     
         
