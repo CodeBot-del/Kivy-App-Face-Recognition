@@ -1,6 +1,7 @@
 WindowManager:
     MainWindow:
     SecondWindow:
+    # ResultWindow:
 
 <MainWindow>:
     name: "main"
@@ -86,6 +87,9 @@ WindowManager:
             pos: self.pos
             color: "#1e6091"
             background_color: "#003049"
+            # on_release: 
+            #     app.root.current = "result"
+            #     root.manager.transition.direction = "left"
 
         Label:
             text: ""
@@ -102,13 +106,26 @@ WindowManager:
                 root.manager.transition.direction = "right"
 
     FloatLayout:
-        Button:
-            text: "Process Results"
-            size_hint: (0.3,0.3)
-            pos_hint: {"x": 0.03, "top": 1}
-            font_size: 20
-         
+        Image:
+            source: "../result.jpg"
+            size_hint: (0.4,0.4)
+            pos_hint: {"x": 0, "top": 1}
+            allow_stretch: True
 
+            
+         
+# <ResultWindow>:
+#     name: "result"
+
+    
+    
+
+
+
+
+    
+
+    
 
 
     

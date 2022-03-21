@@ -13,31 +13,36 @@ class MainWindow(Screen):
 
 class SecondWindow(Screen):
     
-    # def build(self):
-    #     layout = FloatLayout()
-    #     self.image = Image(
-    #         size_hint= (0.3,0.3),
-    #         pos_hint= {"x": 0.03, "top": 1}
-    #     )
-    #     layout.add_widget(self.image)
-    #     # layout.add_widget(RaisedButton(
-    #     #     text="CLICK HERE",
-    #     #     pos_hint={'center_x': .5, 'center_y': .5}, 
-    #     #     size_hint=(None, None)
-    #     # ))
-    #     self.capture = cv2.imread('cena.jpeg')
-    #     Clock.schedule_interval(self.load_image, 1.0/30.0)
-    #     return layout
-    
-    # def load_image(self, *args):
-    #     frame = self.capture
-    #     #Frame initialize
-    #     self.image_frame = frame
-    #     buffer = cv2.flip(frame, 0).tostring()
-    #     texture = Texture.create(size=(frame.shape[1], frame.shape[0]), colorfmt='bgr')
-    #     texture.blit_buffer(buffer, colorfmt='bgr', bufferfmt='ubyte')
-    #     self.image.texture = texture
     pass
+    
+class ResultWindow(Screen):
+    
+    def build(self):
+        layout = FloatLayout()
+        self.image = Image(
+            size_hint= (0.3,0.3),
+            pos_hint= {"x": 0.03, "top": 1}
+        )
+        layout.add_widget(self.image)
+        # layout.add_widget(RaisedButton(
+        #     text="CLICK HERE",
+        #     pos_hint={'center_x': .5, 'center_y': .5}, 
+        #     size_hint=(None, None)
+        # ))
+        self.capture = cv2.imread('cena.jpeg')
+        Clock.schedule_interval(self.load_image, 1.0/30.0)
+        return layout
+    
+    def load_image(self, *args):
+        frame = self.capture
+        #Frame initialize
+        self.image_frame = frame
+        buffer = cv2.flip(frame, 0).tostring()
+        texture = Texture.create(size=(frame.shape[1], frame.shape[0]), colorfmt='bgr')
+        texture.blit_buffer(buffer, colorfmt='bgr', bufferfmt='ubyte')
+        self.image.texture = texture
+        
+    
 
 class WindowManager(ScreenManager):
     pass
@@ -49,6 +54,7 @@ class MyMainApp (App):
     def build(self):
         
         return kv
+        
     
 
         
