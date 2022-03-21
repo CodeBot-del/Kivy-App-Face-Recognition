@@ -23,7 +23,37 @@ class MainApp(MDApp):
         return layout
     
     def take_picture(self, *args):
-        pass 
+        #read the image
+        image = cv2.imread(self.image.source)
+        #create a mask/ a black image that will separate the foreground from background of original image
+        mask = np.zeros(image.shape[:2], np.uint8)
+        backgroundModel = np.zeros((1,65), np.float64)
+        foregroundModel = np.zeros((1,65), np.float64)
+        
+        #mark the image    
+        rectangle = (0,0, int(self.image.texture_size[1], int(self.image.texture_size[0])))
+        
+        values = (
+            ("Definite Background", cv2.GC_BGD),
+            ("Probable Background", cv2.GC_PR_BGD),
+            ("Definite Foreground", cv2.GC_FGD),
+            ("Probable Foreground", cv2.GC_PR_FGD),
+        )
+        
+        #crop the foreground 
+        cv2.grabCut(image, mask, rectangle, backgroundModel, foregroundModel, 4, cv2.GC_INIT_WITH_RECT)
+        
+        #the resulting removed background image
+        finalmask = np.where((mask == cv2.GC_BGD) | (mask == cv2.GC_PR_BGD), 0, 1).astype('uint8')    
+        
+        image = image * finalmask[:,:, np.newaxis]
+        
+        #convert it to transparent
+        
+        b, g, r = cv2.split(image)
+        gray_layer = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        _, alpha = cv2.threshold(gray_layer, 0, 255, cv2.THRESH_BINARY)
+
     
     
 if __name__ == '__main__':
